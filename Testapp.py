@@ -72,9 +72,9 @@ data = data[data[DATE_TIME].dt.hour == hour_selected]
 row2_1, row2_2, row2_3, row2_4 = st.columns((2,1,1,1))
 
 # SETTING THE ZOOM LOCATIONS FOR THE AIRPORTS
-la_guardia= [40.7900, -73.8700]
-jfk = [40.6650, -73.7821]
-newark = [40.7090, -74.1805]
+#la_guardia= [40.7900, -73.8700]
+#jfk = [40.6650, -73.7821]
+#newark = [40.7090, -74.1805]
 zoom_level = 12
 midpoint = (np.average(data["lat"]), np.average(data["lon"]))
 
@@ -82,17 +82,17 @@ with row2_1:
     st.write("**All Toronto City from %i:00 and %i:00**" % (hour_selected, (hour_selected + 1) % 24))
     map(data, midpoint[0], midpoint[1], 11)
 
-with row2_2:
-    st.write("**La Guardia Airport**")
-    map(data, la_guardia[0],la_guardia[1], zoom_level)
+#with row2_2:
+   # st.write("**La Guardia Airport**")
+    #map(data, la_guardia[0],la_guardia[1], zoom_level)
 
-with row2_3:
-    st.write("**JFK Airport**")
-    map(data, jfk[0],jfk[1], zoom_level)
+#with row2_3:
+    #st.write("**JFK Airport**")
+   # map(data, jfk[0],jfk[1], zoom_level)
 
-with row2_4:
-    st.write("**Newark Airport**")
-    map(data, newark[0],newark[1], zoom_level)
+#with row2_4:
+ #   st.write("**Newark Airport**")
+  #  map(data, newark[0],newark[1], zoom_level)
 
 # FILTERING DATA FOR THE HISTOGRAM
 filtered = data[
