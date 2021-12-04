@@ -54,14 +54,14 @@ def map(data, lat, lon, zoom):
 row1_1, row1_2 = st.columns((2,3))
 
 with row1_1:
-    st.title("NYC Sample Data")
+    st.title("Toronto Sample Data")
     hour_selected = st.slider("Select hour of pickup", 0, 23)
 
 with row1_2:
     st.write(
     """
     ##
-    Examining how traffic varies over time in New York City's and at its major regional airports.
+    Examining how traffic varies over time in Toronto City's and at its major regional airports.
     By sliding the slider on the left you can view different slices of time and explore different transportation trends.
     """)
 
@@ -79,7 +79,7 @@ zoom_level = 12
 midpoint = (np.average(data["lat"]), np.average(data["lon"]))
 
 with row2_1:
-    st.write("**All New York City from %i:00 and %i:00**" % (hour_selected, (hour_selected + 1) % 24))
+    st.write("**All Toronto City from %i:00 and %i:00**" % (hour_selected, (hour_selected + 1) % 24))
     map(data, midpoint[0], midpoint[1], 11)
 
 with row2_2:
@@ -101,13 +101,13 @@ filtered = data[
 
 hist = np.histogram(filtered[DATE_TIME].dt.minute, bins=60, range=(0, 60))[0]
 
-chart_data = pd.DataFrame({"minute": range(60), "pickups": hist})
+chart_data = pd.DataFrame({"minute": range(60), "traffic": hist})
 
 # LAYING OUT THE HISTOGRAM SECTION
 
 st.write("")
 
-st.write("**Breakdown of vehicles    per minute between %i:00 and %i:00**" % (hour_selected, (hour_selected + 1) % 24))
+st.write("**Breakdown of vehicles in toronto city per minute between %i:00 and %i:00**" % (hour_selected, (hour_selected + 1) % 24))
 
 st.altair_chart(alt.Chart(chart_data)
     .mark_area(
